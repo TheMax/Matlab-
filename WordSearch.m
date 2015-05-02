@@ -8,14 +8,13 @@
 % Output:
 %    
 
-% Author: Max Zimmermann
+% Author: Christoph Eike, Johannes Lühring, Max Zimmermann
 % Version History:
-
+%       1.0:    first implementation            25.04.2015 CE JL MZ
+%       1.01:   commentation                    28.04.2015 CE JL MZ
 % ------------------------------------------------------------------------
-% Samples Anfang/Ende, in welchen Sätzen: Datei + Satz, Ordner
-% 
-% function [SampleBegin, SampleEnd, FileName, Sentence, FolderName] = ...
-%                                          WordSearch(word)
+function [FolderName, FileName, SampleBegin, SampleEnd, Sentence] = ...
+                                         WordSearch(word)
 SampleBegin = [];
 SampleEnd = [];
 FileName = [];
@@ -23,7 +22,7 @@ Sentence = [];
 FolderName = [];                    
 begin = [];
 fin = [];
-word='greasy';
+
 
 cd timit/'TIMIT MIT'
 y = dir;
@@ -49,21 +48,22 @@ for searchidx=1:length(folders)
         for wrdidx=1:length(data{3})
             wrd = data{3}{wrdidx};
             if length(word) == length(char(wrd(1:end-1)))
-                FolderName = [FolderName ; folders(searchidx)];   
-                begin = [begin '.' data{1}{wrdidx}];
-                SampleBegin2 = strsplit(begin, '.');
-                SampleBegin = SampleBegin2(2:end)';
-                fin = [fin '.' data{2}{wrdidx}];
-                SampleEnd2 = strsplit(fin,'.');
-                SampleEnd = SampleEnd2(2:end)';
-                FileName = [FileName ; names(fileidx)];
-                file = char(names(fileidx));
-                file = [file(1:end-3) 'txt'];
-                fid = fopen(file);
-                SenData = textscan(fid, '%s %s %[^0]');
-                fclose(fid);
-                Sentence = [Sentence SenData{3}{1}];
-%                 break
+                if word == char(wrd(1:end-1))
+                    FolderName = [FolderName ; folders(searchidx)];   
+                    begin = [begin '.' data{1}{wrdidx}];
+                    SampleBegin2 = strsplit(begin, '.');
+                    SampleBegin = SampleBegin2(2:end)';
+                    fin = [fin '.' data{2}{wrdidx}];
+                    SampleEnd2 = strsplit(fin,'.');
+                    SampleEnd = SampleEnd2(2:end)';
+                    FileName = [FileName ; names(fileidx)];
+                    file = char(names(fileidx));
+                    file = [file(1:end-3) 'txt'];
+                    fid = fopen(file);
+                    SenData = textscan(fid, '%s %s %[^0]');
+                    fclose(fid);
+                    Sentence = [Sentence SenData{3}{1}];
+                end
             end
         end
            
@@ -72,19 +72,9 @@ for searchidx=1:length(folders)
 end
 cd ../..
 
-% [SampleBegin SampleEnd FileName Sentence FolderName]
-length(SampleBegin)
-length(SampleEnd)
-length(FileName)
-length(FolderName)
-o = strsplit(Sentence,'.');
-for idx=1:length(o)
-    sen = o(idx);
-    Sentence = [Sentence sen{1}];
 end
-length(Sentence)
 % -------------------Licence ---------------------------------------------
-% Copyright (c) <2015> Max Zimmermann
+% Copyright (c) <2015> Christoph Eike, Johannes Lühring, Max Zimmermann
 % Institute for Hearing Technology and Audiology
 % Jade University of Applied Sciences Oldenburg 
 % Permission is hereby granted, free of charge, to any person obtaining 

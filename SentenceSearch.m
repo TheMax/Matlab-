@@ -12,7 +12,7 @@
 % Version History:
 
 % ------------------------------------------------------------------------
-function [SentenceLength, FileName, FolderName] = SentenceSearch(sentence)
+function [FolderName, FileName, SentenceLength] = SentenceSearch(sentence)
 
 SentenceLength = [];
 FileName = [];
@@ -30,7 +30,6 @@ for searchidx=1:length(folders)
     cd(char(folders(searchidx)))
     x = dir;
     names = [];
-%     sentence = 'She had your dark suit in greasy wash water all year.';
     for nameidx=1:length(x)
         names = [names regexp(x(nameidx).name,'.+\.txt','match')];
     end
@@ -43,7 +42,7 @@ for searchidx=1:length(folders)
         if sen(1:end-1) == sentence
             FolderName = [FolderName folders(searchidx)];
             SentenceLength = [SentenceLength data{2}];
-            FileName = names(txtidx);
+            FileName = [FileName names(txtidx)];
             break
         end
     end
