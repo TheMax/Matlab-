@@ -9,16 +9,21 @@
 %    
 
 % Author: Christoph Eike, Johannes Lühring, Max Zimmermann
-% Version History: 
+% Version History:
 %       1.0:    first implementation            25.04.2015 CE JL MZ
 %       1.01:   commentation                    28.04.2015 CE JL MZ
-
 % ------------------------------------------------------------------------
-function [FolderName, FileName, SentenceLength] = SentenceSearch(sentence)
 
-SentenceLength = [];
+function [FolderName, FileName, SampleBegin, SampleEnd, Sentence] = ...
+                                         PhonemSearch(phonem)
+SampleBegin = [];
+SampleEnd = [];
 FileName = [];
-FolderName = [];
+Sentence = [];
+FolderName = [];                    
+begin = [];
+fin = [];
+
 
 cd timit/'TIMIT MIT'
 y = dir;
@@ -32,26 +37,44 @@ for searchidx=1:length(folders)
     cd(char(folders(searchidx)))
     x = dir;
     names = [];
+
     for nameidx=1:length(x)
-        names = [names regexp(x(nameidx).name,'.+\.txt','match')];
+        names = [names regexp(x(nameidx).name,'.+\.phn','match')];
     end
 
-    for txtidx=1:length(names)
-        fid = fopen(char(names(txtidx)));
-        data = textscan(fid, '%s %s %[^0]');
+    for fileidx=1:length(names)
+        fid = fopen(char(names(fileidx)));
+        data = textscan(fid, '%s %s %[^0123456789]');
         fclose(fid);
-        sen = data{3}{1};
-        if sen(1:end-1) == sentence
-            FolderName = [FolderName folders(searchidx)];
-            SentenceLength = [SentenceLength data{2}];
-            FileName = [FileName names(txtidx)];
-            break
+        for phnidx=1:length(data{3})
+            phn = data{3}{phnidx};
+            if length(phonem) == length(char(phn(1:end-1)))
+                if phonem == char(phn(1:end-1))
+                    FolderName = [FolderName ; folders(searchidx)];   
+                    begin = [begin '.' data{1}{phnidx}];
+                    SampleBegin2 = strsplit(begin, '.');
+                    SampleBegin = SampleBegin2(2:end)';
+                    fin = [fin '.' data{2}{phnidx}];
+                    SampleEnd2 = strsplit(fin,'.');
+                    SampleEnd = SampleEnd2(2:end)';
+                    FileName = [FileName ; names(fileidx)];
+                    file = char(names(fileidx));
+                    file = [file(1:end-3) 'txt'];
+                    fid = fopen(file);
+                    SenData = textscan(fid, '%s %s %[^0]');
+                    fclose(fid);
+                    Sentence = [Sentence SenData{3}{1}];
+                end
+            end
         end
+           
     end
     cd ..
 end
 cd ../..
+
 end
+
 
 
 % -------------------Licence ---------------------------------------------

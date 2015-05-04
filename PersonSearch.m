@@ -1,45 +1,49 @@
-
-% script to 
-% Usage: 
+% function to search for the sentences of a person(folder) 
+% Usage: [SentenceLength, Sentence, FileName] = PersonSearch(FolderName)
 % Input parameter:
-%       
+%       FolderName: give the name of one folder 
 % Output parameter:
-%       
+%       FileName: name of file of certain sentence
+%       SentenceLength: length of certain sentence
+%       Sentence: sentence
 % Output:
-%    
-
-% Author: Max Zimmermann
+%       None
+% Author: Christoph Eike, Johannes Lühring, Max Zimmermann
 % Version History:
-
+%       1.0:    first implementation            25.04.2015 CE JL MZ
+%       1.01:   commentation                    28.04.2015 CE JL MZ
 % ------------------------------------------------------------------------
-% Länge der Sätze, Volle Sätze, Dateinamen
-function [SentenceLength, Sentence, FileName] = PersonSearch(FolderName)
+
+function [FileName, SentenceLength, Sentence] = PersonSearch(FolderName)
 SentenceLength =[];
 Sentence= [];
 FileName = [];
 
 cd timit/'TIMIT MIT'
-cd(FolderName)
+cd(FolderName) %search in certain folder
 
-x = dir;
+x = dir; %save directory of folder
 names = [];
 
-for nameidx=1:length(x)
+for nameidx=1:length(x) %for loop to save all .txt-files in 'names'
     names = [names regexp(x(nameidx).name,'.+\.txt','match')];
 end
 
-for txtidx=1:length(names)
-    fid = fopen(char(names(txtidx)));
-    data = textscan(fid, '%s %s %[^0]');
+for txtidx=1:length(names) %for loop to get information out of .txt-files
+    fid = fopen(char(names(txtidx))); %open .txt-file
+    data = textscan(fid, '%s %s %[^0]'); 
+    %seperate into sample begin, sample end and sentence
     fclose(fid);
-    SentenceLength = [SentenceLength ; data{2}];
-    Sentence = [Sentence data{3}{1}];
-    FileName = [FileName ; names(txtidx)];
+    SentenceLength = [SentenceLength ; data{2}]; %last sample as end
+    Sentence = [Sentence data{3}{1}]; 
+    file = char(names(txtidx));
+    file2 = strcat(file(1:end-3),'wav');
+    FileName = [FileName; {file2}];
 end
 cd ../../..
 end
 % -------------------Licence ---------------------------------------------
-% Copyright (c) <2015> Max Zimmermann
+% Copyright (c) <2015> Christoph Eike, Johannes Lühring, Max Zimmermann
 % Institute for Hearing Technology and Audiology
 % Jade University of Applied Sciences Oldenburg 
 % Permission is hereby granted, free of charge, to any person obtaining 
