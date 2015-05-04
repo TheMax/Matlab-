@@ -45,7 +45,7 @@ end
 
 
 % --- Executes just before GUIDE_GUI is made visible.
-function GUIDE_GUI_OpeningFcn(hObject, eventdata, handles, varargin)
+function GUIDE_GUI_OpeningFcn(hObject, eventdata, handles, varargin) %#ok<*INUSL>
 % This function has no output args, see OutputFcn.
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -174,7 +174,7 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 
 if get(handles.person_edit, 'String') ~ ''
     [Person_FileName, Person_SentenceLength, Person_Sentence] = ...
-        PersonSearch(get(handles.person_edit, 'String'))
+        PersonSearch(get(handles.person_edit, 'String')) %#ok<*ASGLU>
 else
     
 end
@@ -182,13 +182,13 @@ end
 
 if get(handles.sentence_edit, 'String') ~ ''
     [Sentence_FolderName, Sentence_FileName, Sentence_SentenceLength] = ...
-        SentenceSearch(get(handles.sentence_edit, 'String'))
+        SentenceSearch(get(handles.sentence_edit, 'String')) %#ok<*NOPRT>
     
 end
 
 if get(handles.word_edit, 'String') ~ ''
     [Word_FolderName, Word_FileName, Word_SampleBegin, Word_SampleEnd,...
-     Word_Sentence] = WordSearch(get(handles.word_edit, 'String'))
+     Word_Sentence] = WordSearch(get(handles.word_edit, 'String')) 
 else
     
 end
