@@ -22,7 +22,7 @@ function varargout = GUIDE_GUI(varargin)
 
 % Edit the above text to modify the response to help GUIDE_GUI
 
-% Last Modified by GUIDE v2.5 04-May-2015 18:28:41
+% Last Modified by GUIDE v2.5 04-May-2015 23:32:18
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -172,10 +172,99 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 
+% --- Executes on slider movement.
+%function slider1_Callback(hObject, eventdata, handles)
+% hObject    handle to slider1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'Value') returns position of slider
+%        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
+
+
+% --- Executes during object creation, after setting all properties.
+%function slider1_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to slider1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: slider controls usually have a light gray background.
+%if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+%    set(hObject,'BackgroundColor',[.9 .9 .9]);
+%end
+
+
+% --- Executes on slider movement.
+%function slider2_Callback(hObject, eventdata, handles)
+% hObject    handle to slider2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'Value') returns position of slider
+%        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
+
+
+% --- Executes during object creation, after setting all properties.
+%function slider2_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to slider2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: slider controls usually have a light gray background.
+%if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+%    set(hObject,'BackgroundColor',[.9 .9 .9]);
+%end
+
+
+% --- Executes on slider movement.
+%function slider3_Callback(hObject, eventdata, handles)
+% hObject    handle to slider3 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'Value') returns position of slider
+%        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
+
+
+% --- Executes during object creation, after setting all properties.
+%function slider3_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to slider3 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: slider controls usually have a light gray background.
+%if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+%    set(hObject,'BackgroundColor',[.9 .9 .9]);
+%end
+
+
+% --- Executes on slider movement.
+%function slider4_Callback(hObject, eventdata, handles)
+% hObject    handle to slider4 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'Value') returns position of slider
+%        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
+
+
+% --- Executes during object creation, after setting all properties.
+%function slider4_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to slider4 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: slider controls usually have a light gray background.
+%if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+%    set(hObject,'BackgroundColor',[.9 .9 .9]);
+%end
+
+
+
+
 if get(handles.person_edit, 'String') ~ ''
     [Person_FileName, Person_SentenceLength, Person_Sentence] = ...
         PersonSearch(get(handles.person_edit, 'String'))
-else
     
 end
 
@@ -189,7 +278,6 @@ end
 if get(handles.word_edit, 'String') ~ ''
     [Word_FolderName, Word_FileName, Word_SampleBegin, Word_SampleEnd,...
      Word_Sentence] = WordSearch(get(handles.word_edit, 'String'))
-else
     
 end
 
@@ -197,7 +285,8 @@ if get(handles.phonem_edit, 'String') ~ ''
     [Phonem_FolderName, Phonem_FileName, Phonem_SampleBegin, ...
         Phonem_SampleEnd, Phonem_Sentence] = ...
         PhonemSearch(get(handles.phonem_edit, 'String'))
-else
     
 end
-    
+
+set(handles.expense,'String',hObject)
+
