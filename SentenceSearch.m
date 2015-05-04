@@ -14,11 +14,11 @@
 %       1.01:   commentation                    28.04.2015 CE JL MZ
 
 % ------------------------------------------------------------------------
-function [FolderName, FileName, SentenceLength] = SentenceSearch(sentence)
+function [Sentence_FolderName, Sentence_FileName, Sentence_SentenceLength] = SentenceSearch(sentence)
 
-SentenceLength = [];
-FileName = [];
-FolderName = [];
+Sentence_SentenceLength = [];
+Sentence_FileName = [];
+Sentence_FolderName = [];
 
 cd timit/'TIMIT MIT'
 y = dir;
@@ -42,9 +42,9 @@ for searchidx=1:length(folders)
         fclose(fid);
         sen = data{3}{1};
         if sen(1:end-1) == sentence
-            FolderName = [FolderName folders(searchidx)];
-            SentenceLength = [SentenceLength data{2}];
-            FileName = [FileName names(txtidx)];
+            Sentence_FolderName = [Sentence_FolderName folders(searchidx)];
+            Sentence_SentenceLength = [Sentence_SentenceLength data{2}];
+            Sentence_FileName = [Sentence_FileName names(txtidx)];
             break
         end
     end
