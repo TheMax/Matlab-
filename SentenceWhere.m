@@ -8,54 +8,21 @@
 % Output:
 %    
 
-% Author: Christoph Eike, Johannes Lühring, Max Zimmermann
-% Version History: 
-%       1.0:    first implementation            25.04.2015 CE JL MZ
-%       1.01:   commentation                    28.04.2015 CE JL MZ
+% Author: Max Zimmermann
+% Version History:
 
 % ------------------------------------------------------------------------
-function [FolderName, FileName, SentenceLength] = SentenceSearch(sentence)
-
-SentenceLength = [];
-FileName = [];
-FolderName = [];
 
 cd timit/'TIMIT MIT'
-y = dir;
-folders = [];
 
-for folderidx = 1:length(y)
-    folders = [folders regexp(y(folderidx).name,'.+-.+','match')];
-end
+fid = fopen('allsenlist.txt');
+data = textscan(fid, '%[dr[0-9]-.+/.+] %s');
+fclose(fid);
+data    
 
-for searchidx=1:length(folders)
-    cd(char(folders(searchidx)))
-    x = dir;
-    names = [];
-    for nameidx=1:length(x)
-        names = [names regexp(x(nameidx).name,'.+\.txt','match')];
-    end
-
-    for txtidx=1:length(names)
-        fid = fopen(char(names(txtidx)));
-        data = textscan(fid, '%s %s %[^0]');
-        fclose(fid);
-        sen = data{3}{1};
-        if sen(1:end-1) == sentence
-            FolderName = [FolderName folders(searchidx)];
-            SentenceLength = [SentenceLength data{2}];
-            FileName = [FileName names(txtidx)];
-            break
-        end
-    end
-    cd ..
-end
 cd ../..
-end
-
-
 % -------------------Licence ---------------------------------------------
-% Copyright (c) <2015> Christoph Eike, Johannes Lühring, Max Zimmermann
+% Copyright (c) <2015> Max Zimmermann
 % Institute for Hearing Technology and Audiology
 % Jade University of Applied Sciences Oldenburg 
 % Permission is hereby granted, free of charge, to any person obtaining 
