@@ -22,7 +22,7 @@ function varargout = GUIDE_GUI(varargin)
 
 % Edit the above text to modify the response to help GUIDE_GUI
 
-% Last Modified by GUIDE v2.5 04-May-2015 17:16:00
+% Last Modified by GUIDE v2.5 04-May-2015 18:28:41
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -74,18 +74,18 @@ varargout{1} = handles.output;
 
 
 
-function edit5_Callback(hObject, eventdata, handles)
-% hObject    handle to edit5 (see GCBO)
+function person_edit_Callback(hObject, eventdata, handles)
+% hObject    handle to person_edit (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit5 as text
-%        str2double(get(hObject,'String')) returns contents of edit5 as a double
+% Hints: get(hObject,'String') returns contents of person_edit as text
+%        str2double(get(hObject,'String')) returns contents of person_edit as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit5_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit5 (see GCBO)
+function person_edit_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to person_edit (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -97,18 +97,18 @@ end
 
 
 
-function edit6_Callback(hObject, eventdata, handles)
-% hObject    handle to edit6 (see GCBO)
+function sentence_edit_Callback(hObject, eventdata, handles)
+% hObject    handle to sentence_edit (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit6 as text
-%        str2double(get(hObject,'String')) returns contents of edit6 as a double
+% Hints: get(hObject,'String') returns contents of sentence_edit as text
+%        str2double(get(hObject,'String')) returns contents of sentence_edit as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit6_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit6 (see GCBO)
+function sentence_edit_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to sentence_edit (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -120,18 +120,18 @@ end
 
 
 
-function edit7_Callback(hObject, eventdata, handles)
-% hObject    handle to edit7 (see GCBO)
+function word_edit_Callback(hObject, eventdata, handles)
+% hObject    handle to word_edit (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit7 as text
-%        str2double(get(hObject,'String')) returns contents of edit7 as a double
+% Hints: get(hObject,'String') returns contents of word_edit as text
+%        str2double(get(hObject,'String')) returns contents of word_edit as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit7_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit7 (see GCBO)
+function word_edit_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to word_edit (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -143,18 +143,18 @@ end
 
 
 
-function edit8_Callback(hObject, eventdata, handles)
-% hObject    handle to edit8 (see GCBO)
+function phonem_edit_Callback(hObject, eventdata, handles)
+% hObject    handle to phonem_edit (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit8 as text
-%        str2double(get(hObject,'String')) returns contents of edit8 as a double
+% Hints: get(hObject,'String') returns contents of phonem_edit as text
+%        str2double(get(hObject,'String')) returns contents of phonem_edit as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit8_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit8 (see GCBO)
+function phonem_edit_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to phonem_edit (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -171,3 +171,33 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
+
+if get(handles.person_edit, 'String') ~ ''
+    [Person_FileName, Person_SentenceLength, Person_Sentence] = ...
+        PersonSearch(get(handles.person_edit, 'String'))
+else
+    
+end
+
+
+if get(handles.sentence_edit, 'String') ~ ''
+    [Sentence_FolderName, Sentence_FileName, Sentence_SentenceLength] = ...
+        SentenceSearch(get(handles.sentence_edit, 'String'))
+    
+end
+
+if get(handles.word_edit, 'String') ~ ''
+    [Word_FolderName, Word_FileName, Word_SampleBegin, Word_SampleEnd,...
+     Word_Sentence] = WordSearch(get(handles.word_edit, 'String'))
+else
+    
+end
+
+if get(handles.phonem_edit, 'String') ~ ''
+    [Phonem_FolderName, Phonem_FileName, Phonem_SampleBegin, ...
+        Phonem_SampleEnd, Phonem_Sentence] = ...
+        PhonemSearch(get(handles.phonem_edit, 'String'))
+else
+    
+end
+    

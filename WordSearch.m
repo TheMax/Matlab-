@@ -13,13 +13,13 @@
 %       1.0:    first implementation            25.04.2015 CE JL MZ
 %       1.01:   commentation                    28.04.2015 CE JL MZ
 % ------------------------------------------------------------------------
-function [FolderName, FileName, SampleBegin, SampleEnd, Sentence] = ...
+function [Word_FolderName, Word_FileName, Word_SampleBegin, Word_SampleEnd, Word_Sentence] = ...
                                          WordSearch(word)
-SampleBegin = [];
-SampleEnd = [];
-FileName = [];
-Sentence = [];
-FolderName = [];                    
+Word_SampleBegin = [];
+Word_SampleEnd = [];
+Word_FileName = [];
+Word_Sentence = [];
+Word_FolderName = [];                    
 begin = [];
 fin = [];
 
@@ -49,20 +49,20 @@ for searchidx=1:length(folders)
             wrd = data{3}{wrdidx};
             if length(word) == length(char(wrd(1:end-1)))
                 if word == char(wrd(1:end-1))
-                    FolderName = [FolderName ; folders(searchidx)];   
+                    Word_FolderName = [Word_FolderName ; folders(searchidx)];   
                     begin = [begin '.' data{1}{wrdidx}];
                     SampleBegin2 = strsplit(begin, '.');
-                    SampleBegin = SampleBegin2(2:end)';
+                    Word_SampleBegin = SampleBegin2(2:end)';
                     fin = [fin '.' data{2}{wrdidx}];
                     SampleEnd2 = strsplit(fin,'.');
-                    SampleEnd = SampleEnd2(2:end)';
-                    FileName = [FileName ; names(fileidx)];
+                    Word_SampleEnd = SampleEnd2(2:end)';
+                    Word_FileName = [Word_FileName ; names(fileidx)];
                     file = char(names(fileidx));
                     file = [file(1:end-3) 'txt'];
                     fid = fopen(file);
                     SenData = textscan(fid, '%s %s %[^0]');
                     fclose(fid);
-                    Sentence = [Sentence SenData{3}{1}];
+                    Word_Sentence = [Word_Sentence SenData{3}{1}];
                 end
             end
         end

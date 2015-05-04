@@ -14,10 +14,10 @@
 %       1.01:   commentation                    28.04.2015 CE JL MZ
 % ------------------------------------------------------------------------
 
-function [FileName, SentenceLength, Sentence] = PersonSearch(FolderName)
-SentenceLength =[];
-Sentence= [];
-FileName = [];
+function [Person_FileName, Person_SentenceLength, Person_Sentence] = PersonSearch(FolderName)
+Person_SentenceLength =[];
+Person_Sentence= [];
+Person_FileName = [];
 
 cd timit/'TIMIT MIT'
 cd(FolderName) %search in certain folder
@@ -34,11 +34,11 @@ for txtidx=1:length(names) %for loop to get information out of .txt-files
     data = textscan(fid, '%s %s %[^0]'); 
     %seperate into sample begin, sample end and sentence
     fclose(fid);
-    SentenceLength = [SentenceLength ; data{2}]; %last sample as end
-    Sentence = [Sentence data{3}{1}]; 
+    Person_SentenceLength = [Person_SentenceLength ; data{2}]; %last sample as end
+    Person_Sentence = [Person_Sentence data{3}{1}]; 
     file = char(names(txtidx));
     file2 = strcat(file(1:end-3),'wav');
-    FileName = [FileName; {file2}];
+    Person_FileName = [Person_FileName; {file2}];
 end
 cd ../../..
 end

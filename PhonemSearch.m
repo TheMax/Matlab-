@@ -14,13 +14,13 @@
 %       1.01:   commentation                    28.04.2015 CE JL MZ
 % ------------------------------------------------------------------------
 
-function [FolderName, FileName, SampleBegin, SampleEnd, Sentence] = ...
+function [Phonem_FolderName, Phonem_FileName, Phonem_SampleBegin, Phonem_SampleEnd, Phonem_Sentence] = ...
                                          PhonemSearch(phonem)
-SampleBegin = [];
-SampleEnd = [];
-FileName = [];
-Sentence = [];
-FolderName = [];                    
+Phonem_SampleBegin = [];
+Phonem_SampleEnd = [];
+Phonem_FileName = [];
+Phonem_Sentence = [];
+Phonem_FolderName = [];                    
 begin = [];
 fin = [];
 
@@ -50,20 +50,20 @@ for searchidx=1:length(folders)
             phn = data{3}{phnidx};
             if length(phonem) == length(char(phn(1:end-1)))
                 if phonem == char(phn(1:end-1))
-                    FolderName = [FolderName ; folders(searchidx)];   
+                    Phonem_FolderName = [Phonem_FolderName ; folders(searchidx)];   
                     begin = [begin '.' data{1}{phnidx}];
                     SampleBegin2 = strsplit(begin, '.');
-                    SampleBegin = SampleBegin2(2:end)';
+                    Phonem_SampleBegin = SampleBegin2(2:end)';
                     fin = [fin '.' data{2}{phnidx}];
                     SampleEnd2 = strsplit(fin,'.');
-                    SampleEnd = SampleEnd2(2:end)';
-                    FileName = [FileName ; names(fileidx)];
+                    Phonem_SampleEnd = SampleEnd2(2:end)';
+                    Phonem_FileName = [Phonem_FileName ; names(fileidx)];
                     file = char(names(fileidx));
                     file = [file(1:end-3) 'txt'];
                     fid = fopen(file);
                     SenData = textscan(fid, '%s %s %[^0]');
                     fclose(fid);
-                    Sentence = [Sentence SenData{3}{1}];
+                    Phonem_Sentence = [Phonem_Sentence SenData{3}{1}];
                 end
             end
         end
