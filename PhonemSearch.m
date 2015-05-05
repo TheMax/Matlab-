@@ -17,8 +17,8 @@
 %       1.01:   commentation                    28.04.2015 CE JL MZ
 % ------------------------------------------------------------------------
 
-function [Phonem_FolderName, Phonem_FileName, Phonem_SampleBegin, Phonem_SampleEnd, Phonem_Sentence] = ...
-                                         PhonemSearch(phonem)
+function [Phonem_FolderName, Phonem_FileName, Phonem_SampleBegin, ...
+                Phonem_SampleEnd, Phonem_Sentence] = PhonemSearch(phonem)
 Phonem_SampleBegin = [];
 Phonem_SampleEnd = [];
 Phonem_FileName = [];
@@ -58,7 +58,8 @@ for searchidx=1:length(folders)
             if length(phonem) == length(char(phn(1:end-1)))
                 %phonems can only be compared if same length
                 if phonem == char(phn(1:end-1))
-                    Phonem_FolderName = [Phonem_FolderName ; folders(searchidx)];   
+                    Phonem_FolderName = [Phonem_FolderName ; ...
+                                                      folders(searchidx)];   
                     %person
                     begin = [begin '.' data{1}{phnidx}];
                     SampleBegin2 = strsplit(begin, '.');
@@ -77,7 +78,8 @@ for searchidx=1:length(folders)
                     fid = fopen(file);
                     SenData = textscan(fid, '%s %s %[^0]');
                     fclose(fid);
-                    Phonem_Sentence = [Phonem_Sentence SenData{3}{1}];
+                    sen = SenData{3}{1};
+                    Phonem_Sentence = [Phonem_Sentence; cellstr(sen)];
                     %sentences with phonems
                 end
             end

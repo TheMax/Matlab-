@@ -78,7 +78,8 @@ for searchidx=1:length(folders)
                     fid = fopen(file);
                     SenData = textscan(fid, '%s %s %[^0]');
                     fclose(fid);
-                    Word_Sentence = [Word_Sentence SenData{3}{1}];
+                    sen = SenData{3}{1};
+                    Word_Sentence = [Word_Sentence; cellstr(sen)];
                     %save sentence
                 end
             end

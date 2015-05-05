@@ -165,27 +165,27 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on selection change in expense1.
-function expense1_Callback(hObject, eventdata, handles)
-% hObject    handle to expense1 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: contents = cellstr(get(hObject,'String')) returns expense1 contents as cell array
-%        contents{get(hObject,'Value')} returns selected item from expense1
-
-
-% --- Executes during object creation, after setting all properties.
-function expense1_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to expense1 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: listbox controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
+% % --- Executes on selection change in expense1.
+% function expense1_Callback(hObject, eventdata, handles)
+% % hObject    handle to expense1 (see GCBO)
+% % eventdata  reserved - to be defined in a future version of MATLAB
+% % handles    structure with handles and user data (see GUIDATA)
+% 
+% % Hints: contents = cellstr(get(hObject,'String')) returns expense1 contents as cell array
+% %        contents{get(hObject,'Value')} returns selected item from expense1
+% 
+% 
+% % --- Executes during object creation, after setting all properties.
+% function expense1_CreateFcn(hObject, eventdata, handles)
+% % hObject    handle to expense1 (see GCBO)
+% % eventdata  reserved - to be defined in a future version of MATLAB
+% % handles    empty - handles not created until after all CreateFcns called
+% 
+% % Hint: listbox controls usually have a white background on Windows.
+% %       See ISPC and COMPUTER.
+% if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+%     set(hObject,'BackgroundColor','white');
+% end
 
 
 
@@ -200,7 +200,14 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 if get(handles.person_edit, 'String') ~ ''
     [Person_FileName, Person_SentenceLength, Person_Sentence] = ...
         PersonSearch(get(handles.person_edit, 'String'))
-
+    %clear gui
+    set(handles.expenseFolderName,'String','')
+    set(handles.expenseFileName,'String','')
+    set(handles.expenseSampleBegin,'String','')
+    set(handles.expenseSampleEnd,'String','')
+    set(handles.expenseSentence,'String','') 
+    set(handles.expenseSentenceLength,'String','')    
+    %set gui
     set(handles.expenseFileName,'String',Person_FileName)
     set(handles.expenseSentenceLength,'String',Person_SentenceLength)
     set(handles.expenseSentence,'String',Person_Sentence)
@@ -209,7 +216,14 @@ end
 if get(handles.sentence_edit, 'String') ~ ''
     [Sentence_FolderName, Sentence_FileName, Sentence_SentenceLength] = ...
         SentenceSearch(get(handles.sentence_edit, 'String'))
-
+    %clear gui
+    set(handles.expenseFolderName,'String','')
+    set(handles.expenseFileName,'String','')
+    set(handles.expenseSampleBegin,'String','')
+    set(handles.expenseSampleEnd,'String','')
+    set(handles.expenseSentence,'String','') 
+    set(handles.expenseSentenceLength,'String','')  
+    %set gui
     set(handles.expenseFolderName,'String',Sentence_FolderName)
     set(handles.expenseFileName,'String',Sentence_FileName)
     set(handles.expenseSentenceLength,'String',Person_SentenceLength)    
@@ -218,7 +232,14 @@ end
 if get(handles.word_edit, 'String') ~ ''
     [Word_FolderName, Word_FileName, Word_SampleBegin, Word_SampleEnd,...
      Word_Sentence] = WordSearch(get(handles.word_edit, 'String'))
-
+    %clear gui
+    set(handles.expenseFolderName,'String','')
+    set(handles.expenseFileName,'String','')
+    set(handles.expenseSampleBegin,'String','')
+    set(handles.expenseSampleEnd,'String','')
+    set(handles.expenseSentence,'String','') 
+    set(handles.expenseSentenceLength,'String','')  
+    %set gui
     set(handles.expenseFolderName,'String',Word_FolderName)
     set(handles.expenseFileName,'String',Word_FileName)
     set(handles.expenseSampleBegin,'String',Word_SampleBegin)
@@ -230,14 +251,17 @@ if get(handles.phonem_edit, 'String') ~ ''
     [Phonem_FolderName, Phonem_FileName, Phonem_SampleBegin, ...
         Phonem_SampleEnd, Phonem_Sentence] = ...
         PhonemSearch(get(handles.phonem_edit, 'String'))
-    
+    %clear gui
+    set(handles.expenseFolderName,'String','')
+    set(handles.expenseFileName,'String','')
+    set(handles.expenseSampleBegin,'String','')
+    set(handles.expenseSampleEnd,'String','')
+    set(handles.expenseSentence,'String','') 
+    set(handles.expenseSentenceLength,'String','')  
+    %set gui
     set(handles.expenseFolderName,'String',Phonem_FolderName)
     set(handles.expenseFileName,'String',Phonem_FileName)
     set(handles.expenseSampleBegin,'String',Phonem_SampleBegin)
     set(handles.expenseSampleEnd,'String',Phonem_SampleEnd)
     set(handles.expenseSentence,'String',Phonem_Sentence)    
 end
-
-
-
-

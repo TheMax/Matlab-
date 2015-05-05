@@ -2,7 +2,7 @@
 clear all
 close all
 clc
-sentence = 'She had your dark suit in greasy wash water all year.';
+sentence = 'When peeling an orange, it is hard not to spray juice.';
 [FolderName, FileName, SentenceLength]=SentenceSearch(sentence);
 assert(exist('FolderName')==1,'No Folder')
 assert(exist('FileName')==1,'No File')

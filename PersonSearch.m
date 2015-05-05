@@ -14,7 +14,8 @@
 %       1.01:   commentation                    28.04.2015 CE JL MZ
 % ------------------------------------------------------------------------
 
-function [Person_FileName, Person_SentenceLength, Person_Sentence] = PersonSearch(FolderName)
+function [Person_FileName, Person_SentenceLength, Person_Sentence] = ...
+                                                PersonSearch(FolderName)
 Person_SentenceLength =[];
 Person_Sentence= [];
 Person_FileName = [];
@@ -34,8 +35,10 @@ for txtidx=1:length(names) %for loop to get information out of .txt-files
     data = textscan(fid, '%s %s %[^0]'); 
     %seperate into sample begin, sample end and sentence
     fclose(fid);
-    Person_SentenceLength = [Person_SentenceLength ; data{2}]; %last sample as end
-    Person_Sentence = [Person_Sentence data{3}{1}]; %sentences
+    Person_SentenceLength = [Person_SentenceLength ; data{2}]; 
+    %last sample as end
+    sen = data{3}{1};
+    Person_Sentence = [Person_Sentence; cellstr(sen) ]; %sentences
     file = char(names(txtidx));
     file2 = strcat(file(1:end-3),'wav'); %records of person
     Person_FileName = [Person_FileName; {file2}];

@@ -14,7 +14,8 @@
 %       1.0:    first implementation            25.04.2015 CE JL MZ
 %       1.01:   commentation                    28.04.2015 CE JL MZ
 % ------------------------------------------------------------------------
-function [Sentence_FolderName, Sentence_FileName, Sentence_SentenceLength] = SentenceSearch(sentence)
+function [Sentence_FolderName, Sentence_FileName, ...
+                        Sentence_SentenceLength] = SentenceSearch(sentence)
 
 Sentence_SentenceLength = [];
 Sentence_FileName = [];
@@ -46,17 +47,21 @@ for searchidx=1:length(folders)
         %open files
         sen = data{3}{1};
         %save sentence of file in variable
-        if sen(1:end-1) == sentence
-            %match?
-            Sentence_FolderName = [Sentence_FolderName; folders(searchidx)];
-            %save name of person folder
-            Sentence_SentenceLength = [Sentence_SentenceLength; data{2}];
-            %save last sample number as length
-            rec = char(names(txtidx));
-            rec2 = strcat(rec(1:end-3),'wav'); 
-            Sentence_FileName = [Sentence_FileName; {rec2}];
-            %save name of record
-            break
+        if length(sen(1:end-1)) == length(sentence)
+            if sen(1:end-1) == sentence
+                %match?
+                Sentence_FolderName = [Sentence_FolderName; ...
+                                                     folders(searchidx)];
+                %save name of person folder
+                Sentence_SentenceLength = [Sentence_SentenceLength;...
+                                                                data{2}];
+                %save last sample number as length
+                rec = char(names(txtidx));
+                rec2 = strcat(rec(1:end-3),'wav'); 
+                Sentence_FileName = [Sentence_FileName; {rec2}];
+                %save name of record
+                break
+            end
         end
     end
     cd ..
