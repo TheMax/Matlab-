@@ -25,11 +25,28 @@ GUI files:
 * GUIDE_GUI.m
 * GUIDE_GUI.fig
 
+##Usage
+
+* [SentenceLength, Sentence, FileName] = PersonSearch('dr1-fvmh0')
+* [FolderName, FileName, SentenceLength] = SentenceSearch('She had your dark suit in greasy wash water all year.')
+* [FolderName, FileName, SampleBegin, SampleEnd, Sentence] = PhonemSearch('iy')
+* [FolderName, FileName, SampleBegin, SampleEnd, Sentence] = WordSearch('she')
+* GUIDE_GUI
+
+##Dependencies
+
+* GUIDE_GUI uses: PersonSearch, SentenceSearch, PhonemSearch, WordSearch
 
 ##Install
 To use this program you need to get all files of the content.
 Also the timit folder is required.
 Caution! All files have to be in same folder to run this program.
+
+##Authors
+
+* Christoph Eike
+* Johannes Lühring
+* Max Zimmermann
 
 ##License
 see License.md
