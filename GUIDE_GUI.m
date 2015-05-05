@@ -1,3 +1,19 @@
+% function to create a GUI and to use functions to search in the database.
+% Displays found data in the GUI.
+% Usage: GUIDE_GUI
+% Input parameter:
+%       Defined by user
+% Output parameter:
+%       None
+% Output
+%    GUI with search results
+
+% Authors: Christoph Eike, Max Zimmermann, Johannes Lühring 
+% Version History:
+% Ver. 0.01 initial create      01-May-2015 CE MZ JL
+% Ver. 1.0  final version       05-May-2015 CE MZ JL
+% ------------------------------------------------------------------------
+
 function varargout = GUIDE_GUI(varargin)
 % GUIDE_GUI MATLAB code for GUIDE_GUI.fig
 %      GUIDE_GUI, by itself, creates a new GUIDE_GUI or raises the existing
@@ -165,30 +181,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% % --- Executes on selection change in expense1.
-% function expense1_Callback(hObject, eventdata, handles)
-% % hObject    handle to expense1 (see GCBO)
-% % eventdata  reserved - to be defined in a future version of MATLAB
-% % handles    structure with handles and user data (see GUIDATA)
-% 
-% % Hints: contents = cellstr(get(hObject,'String')) returns expense1 contents as cell array
-% %        contents{get(hObject,'Value')} returns selected item from expense1
-% 
-% 
-% % --- Executes during object creation, after setting all properties.
-% function expense1_CreateFcn(hObject, eventdata, handles)
-% % hObject    handle to expense1 (see GCBO)
-% % eventdata  reserved - to be defined in a future version of MATLAB
-% % handles    empty - handles not created until after all CreateFcns called
-% 
-% % Hint: listbox controls usually have a white background on Windows.
-% %       See ISPC and COMPUTER.
-% if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-%     set(hObject,'BackgroundColor','white');
-% end
-
-
-
 % --- Executes on button press in pushbutton1.
 function pushbutton1_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton1 (see GCBO)
@@ -196,50 +188,55 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 
-
+%reads entry of the edit window 'person_edit'
+%and applies function PersonSearch on this entry
 if get(handles.person_edit, 'String') ~ ''
     [Person_FileName, Person_SentenceLength, Person_Sentence] = ...
         PersonSearch(get(handles.person_edit, 'String'))
-    %clear gui
+    %clears GUI entries
     set(handles.expenseFolderName,'String','')
     set(handles.expenseFileName,'String','')
     set(handles.expenseSampleBegin,'String','')
     set(handles.expenseSampleEnd,'String','')
     set(handles.expenseSentence,'String','') 
     set(handles.expenseSentenceLength,'String','')    
-    %set gui
+    %pastes data into the GUI output window
     set(handles.expenseFileName,'String',Person_FileName)
     set(handles.expenseSentenceLength,'String',Person_SentenceLength)
     set(handles.expenseSentence,'String',Person_Sentence)
 end    
 
+%reads entry of the edit window 'sentence_edit'
+%and applies function SentenceSearch on this entry
 if get(handles.sentence_edit, 'String') ~ ''
     [Sentence_FolderName, Sentence_FileName, Sentence_SentenceLength] = ...
         SentenceSearch(get(handles.sentence_edit, 'String'))
-    %clear gui
+    %clears GUI entries
     set(handles.expenseFolderName,'String','')
     set(handles.expenseFileName,'String','')
     set(handles.expenseSampleBegin,'String','')
     set(handles.expenseSampleEnd,'String','')
     set(handles.expenseSentence,'String','') 
     set(handles.expenseSentenceLength,'String','')  
-    %set gui
+    %pastes data into the GUI output window
     set(handles.expenseFolderName,'String',Sentence_FolderName)
     set(handles.expenseFileName,'String',Sentence_FileName)
     set(handles.expenseSentenceLength,'String',Person_SentenceLength)    
 end
 
+%reads entry of the edit window 'word_edit'
+%and applies function WordSearch on this entry
 if get(handles.word_edit, 'String') ~ ''
     [Word_FolderName, Word_FileName, Word_SampleBegin, Word_SampleEnd,...
      Word_Sentence] = WordSearch(get(handles.word_edit, 'String'))
-    %clear gui
+    %clears GUI entries
     set(handles.expenseFolderName,'String','')
     set(handles.expenseFileName,'String','')
     set(handles.expenseSampleBegin,'String','')
     set(handles.expenseSampleEnd,'String','')
     set(handles.expenseSentence,'String','') 
     set(handles.expenseSentenceLength,'String','')  
-    %set gui
+    %pastes data into the GUI output window
     set(handles.expenseFolderName,'String',Word_FolderName)
     set(handles.expenseFileName,'String',Word_FileName)
     set(handles.expenseSampleBegin,'String',Word_SampleBegin)
@@ -247,18 +244,20 @@ if get(handles.word_edit, 'String') ~ ''
     set(handles.expenseSentence,'String',Word_Sentence)    
 end
 
+%reads entry of the edit window 'phonem_edit'
+%and applies function PhonemSearch on this entry
 if get(handles.phonem_edit, 'String') ~ ''
     [Phonem_FolderName, Phonem_FileName, Phonem_SampleBegin, ...
         Phonem_SampleEnd, Phonem_Sentence] = ...
         PhonemSearch(get(handles.phonem_edit, 'String'))
-    %clear gui
+    %clears GUI entries
     set(handles.expenseFolderName,'String','')
     set(handles.expenseFileName,'String','')
     set(handles.expenseSampleBegin,'String','')
     set(handles.expenseSampleEnd,'String','')
     set(handles.expenseSentence,'String','') 
     set(handles.expenseSentenceLength,'String','')  
-    %set gui
+    %pastes data into the GUI output window
     set(handles.expenseFolderName,'String',Phonem_FolderName)
     set(handles.expenseFileName,'String',Phonem_FileName)
     set(handles.expenseSampleBegin,'String',Phonem_SampleBegin)
