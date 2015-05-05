@@ -3,27 +3,28 @@ Program name: Daten_&_Algorithmen_Aufgabe_1
 
 Authors: Christoph Eike, Max Zimmermann, Johannes Lühring
 
-##Usage
-Daten_&_Algorithmen_Aufgabe_1 is a program which searches a framework of TIMIT/MIT for names of person, sentence, word and phoneme. The included gui allows to register person names (token), sentences, words and phoneme. If you push 'Search' Button, program accomplish filled text entries and give back the issue in appropriate listbox.
+##Project
+Daten_&_Algorithmen_Aufgabe_1 is a program which searches a database by the TIMIT/MIT for names of persons, sentences, words and phonemes. The included GUI allows to list the searched and found data. If you push the 'Search' Button, the program  detects filled text entries and returns the data in the appropriate listbox.
 ##Content
-This program includes several funktions, which are in use of the gui.
+This program includes several functions, which are used by the GUI.
 The functions are:
 * PersonSearch.m
 * SentenceSearch.m
 * WordSearch.m
 * PhonemSearch.m
 
-Each function has got a appropriate test file
+Test functions have been written to automatically test the actual output of the functions:
 
-The test files are:
-* TestPersonSearch.m
 * TestSentenceSearch.m
 * TestWordSearch.m
 * TestPhonemSearch.m
+* TestPersonSearch.m
 
-Also the gui:
+GUI files:
+
 * GUIDE_GUI.m
 * GUIDE_GUI.fig
+
 
 ##Install
 To use this program you need to get all files of the content.
