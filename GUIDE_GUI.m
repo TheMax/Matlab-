@@ -221,7 +221,7 @@ if get(handles.sentence_edit, 'String') ~ ''
     %pastes data into the GUI output window
     set(handles.expenseFolderName,'String',Sentence_FolderName)
     set(handles.expenseFileName,'String',Sentence_FileName)
-    set(handles.expenseSentenceLength,'String',Person_SentenceLength)    
+    set(handles.expenseSentenceLength,'String',Sentence_SentenceLength)    
 end
 
 %reads entry of the edit window 'word_edit'
@@ -248,7 +248,7 @@ end
 %and applies function PhonemSearch on this entry
 if get(handles.phonem_edit, 'String') ~ ''
     [Phonem_FolderName, Phonem_FileName, Phonem_SampleBegin, ...
-        Phonem_SampleEnd, Phonem_Sentence] = ...
+        Phonem_SampleEnd, Phonem_Sentence] =  ...
         PhonemSearch(get(handles.phonem_edit, 'String'))
     %clears GUI entries
     set(handles.expenseFolderName,'String','')

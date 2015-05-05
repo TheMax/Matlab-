@@ -1,6 +1,6 @@
 % function to search for a certain sentence
-% Usage: [FolderName, FileName, SentenceLength] = ...
-%  SentenceSearch('She had your dark suit in greasy wash water all year.')
+% Usage: [Sentence_FolderName, Sentence_FileName, Sentence_SentenceLength]...
+% = SentenceSearch('She had your dark suit in greasy wash water all year.')
 % Input parameter:
 %       sentence: search for this sentence (write as string)      
 % Output parameter:
